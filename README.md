@@ -5,4 +5,3 @@ General Terraform training documentation. This should be used in collaboration w
 ## Maintainer
 
 * Will Hall
- 
