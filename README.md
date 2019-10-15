@@ -4,30 +4,33 @@ General Terraform training documentation. This should be used in collaboration w
 
 ## Contents
 
-### `tf-1`
+### tf-1
 
 As basic as possible. A provider, a region and a resource.
 
 Learn:
-    * init
-    * apply
-    * change
-    * destroy
+
+* init
+* apply
+* change
+* destroy
 
 ### tf-2
 
 Start with using variables.
 
 Learn:
-    * static variables
+
+* dynamic variables
 
 ### tf-3
 
 Extending to understand data request and dynamic variables.
 
 Learn:
-    * data request
-    * dynamic variables
+
+* data request
+* static variables
 
 ### tf-4
 
