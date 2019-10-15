@@ -32,7 +32,7 @@ resource "aws_subnet" "subnet" {
 
 #
 resource "aws_security_group" "ssh" {
-  name        = "public"
+  name        = "public shh"
   description = "Security Group Deployment"
   vpc_id      = "${aws_vpc.default.id}"
   tags        = "${merge(var.project_tags)}"
@@ -47,7 +47,7 @@ resource "aws_security_group" "ssh" {
 }
 
 resource "aws_security_group" "http" {
-  name        = "public"
+  name        = "public http"
   description = "Security Group Deployment"
   vpc_id      = "${aws_vpc.default.id}"
   tags        = "${merge(var.project_tags)}"
@@ -70,7 +70,7 @@ resource "aws_security_group" "http" {
 }
 
 resource "aws_security_group" "egress" {
-  name        = "every egress"
+  name        = "egress all"
   description = "Security Group Deployment"
   vpc_id      = "${aws_vpc.default.id}"
   tags        = "${merge(var.project_tags)}"
