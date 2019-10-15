@@ -31,7 +31,7 @@ resource "aws_subnet" "subnet" {
 }
 
 #
-resource "aws_security_group" "security" {
+resource "aws_security_group" "ssh" {
   name        = "public"
   description = "Security Group Deployment"
   vpc_id      = "${aws_vpc.default.id}"
@@ -44,6 +44,13 @@ resource "aws_security_group" "security" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group" "http" {
+  name        = "public"
+  description = "Security Group Deployment"
+  vpc_id      = "${aws_vpc.default.id}"
+  tags        = "${merge(var.project_tags)}"
 
   # HTTP access from anywhere
   ingress {
@@ -60,6 +67,13 @@ resource "aws_security_group" "security" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group" "egress" {
+  name        = "every egress"
+  description = "Security Group Deployment"
+  vpc_id      = "${aws_vpc.default.id}"
+  tags        = "${merge(var.project_tags)}"
 
   # outbound internet access
   egress {
@@ -75,7 +89,9 @@ resource "aws_instance" "web" {
   instance_type = var.instance_type
   subnet_id     = "${aws_subnet.subnet.id}"
   security_groups = [
-    "${aws_security_group.security.id}"
+    "${aws_security_group.ssh.id}",
+    "${aws_security_group.http.id}",
+    "${aws_security_group.egress.id}"
   ]
   tags          = "${merge(var.project_tags)}"
 }
