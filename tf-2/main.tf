@@ -11,7 +11,10 @@ resource "aws_instance" "web" {
     }
 }
 
+variable "ami" {
+    default = "ami-0c3f128b7298d29b9"
+}
 
-# variable "ami" {
-#     default = "ami-0c3f128b7298d29b9"
-# }
+variable "name" {
+    description = "I like names"
+}
