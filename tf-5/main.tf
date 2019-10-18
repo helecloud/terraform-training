@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = "eu-west-2" # London
+  region  = var.region # London
   version = "~> 2.0"
 }
 
@@ -77,5 +77,5 @@ resource "aws_instance" "web" {
   security_groups = [
     "${aws_security_group.security.id}"
   ]
-  tags          = "${merge(var.project_tags)}"
+  tags = "${merge(var.project_tags)}"
 }

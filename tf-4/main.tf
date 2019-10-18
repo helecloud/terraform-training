@@ -9,7 +9,7 @@ variable "name" {
 
 variable "instance_type" {
   description = "EC2 instance type"
-  default     = "t3.medium"
+  default     = "t3.small"
 }
 
 data "aws_ami" "ubuntu" {
