@@ -5,7 +5,7 @@ provider "aws" {
 
 variable "name" {
   description = "Name of EC2 instance"
-  default = "myinstance"
+  default     = "myinstance"
 }
 
 variable "instance_type" {

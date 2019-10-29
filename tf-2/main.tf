@@ -4,17 +4,17 @@ provider "aws" {
 }
 
 resource "aws_instance" "web" {
-    ami           = "${var.ami}"
-    instance_type = "t2.small"
-    tags = {
-        Name = "${var.name}"
-    }
+  ami           = "${var.ami}"
+  instance_type = "t2.small"
+  tags = {
+    Name = "${var.name}"
+  }
 }
 
 variable "ami" {
-    default = "ami-0c3f128b7298d29b9"
+  default = "ami-0c3f128b7298d29b9"
 }
 
 variable "name" {
-    description = "I like names"
+  description = "I like names"
 }
