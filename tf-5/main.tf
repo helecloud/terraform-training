@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = var.region # London
+  region  = "${var.region}" # London
   version = "~> 2.0"
 }
 
@@ -71,8 +71,8 @@ resource "aws_security_group" "security" {
 }
 
 resource "aws_instance" "web" {
-  ami           = var.ami
-  instance_type = var.instance_type
+  ami           = "${var.ami}"
+  instance_type = "${var.instance_type}"
   subnet_id     = "${aws_subnet.subnet.id}"
   vpc_security_group_ids = [
     "${aws_security_group.security.id}"

@@ -1,5 +1,6 @@
 #outputs
 
 output "ip_address" {
-  value = aws_eip.ip_address.public_ip
+  description = "External IP for Elastic IP"
+  value = "${aws_eip.ip_address.public_ip}"
 }

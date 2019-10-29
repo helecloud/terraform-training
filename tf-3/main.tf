@@ -30,10 +30,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.image_id
-  instance_type = var.instance_type
+  ami           = "${data.aws_ami.ubuntu.image_id}"
+  instance_type = "${var.instance_type}"
 
   tags = {
-    Name = var.name
+    Name = "${var.name}"
   }
 }

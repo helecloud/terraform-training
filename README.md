@@ -36,7 +36,7 @@ Learn:
 
 Using different resources together.
 
-### tf-5 
+### tf-5
 
 Using different resources, data and outputs.
 

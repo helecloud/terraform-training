@@ -12,6 +12,7 @@ resource "aws_instance" "web" {
 }
 
 variable "ami" {
+  description = "Amazon Machine Image"
   default = "ami-0c3f128b7298d29b9"
 }
 
