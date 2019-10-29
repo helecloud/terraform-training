@@ -88,10 +88,15 @@ resource "aws_instance" "web" {
   ami           = var.ami
   instance_type = var.instance_type
   subnet_id     = "${aws_subnet.subnet.id}"
-  security_groups = [
+  vpc_security_group_ids = [
     "${aws_security_group.ssh.id}",
     "${aws_security_group.http.id}",
     "${aws_security_group.egress.id}"
   ]
   tags = "${merge(var.project_tags)}"
+}
+
+resource "aws_eip" "ip_address" {
+  instance = "${aws_instance.web.id}"
+  vpc      = true
 }

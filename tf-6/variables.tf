@@ -16,9 +16,9 @@ variable "instance_type" {
 variable "project_tags" {
   type = "map"
   default = {
-    Name       = "terraform-testing"
-    Owner      = "Will Hall"
-    Purpose    = "Testing"
-    CostCenter = "0001"
+      Name       = "Instance"
+      Owner      = "Will Hall"
+      Purpose    = "Testing"
+      CostCenter = "0001"
   }
 }
