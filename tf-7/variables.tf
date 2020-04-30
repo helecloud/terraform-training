@@ -1,14 +1,24 @@
-variable "with_policy" {
-  description = "If set to `true`, the bucket will be created with a bucket policy."
-  default     = true
+variable "region" {
+  type    = "string"
+  default = "eu-west-2"
 }
 
-variable "tag_bucket_name" {
-  description = "The Name tag to set for the S3 Bucket."
-  default     = "terratest"
+variable "ami" {
+  description = "AMI of image"
+  default     = "ami-0c3f128b7298d29b9" # eu-west-2 Ubuntu-18.04"
 }
 
-variable "tag_bucket_environment" {
-  description = "The Environment tag to set for the S3 Bucket."
-  default     = "test"
+variable "instance_type" {
+  description = "EC2 instance type"
+  default     = "t2.small"
+}
+
+variable "project_tags" {
+  type = "map"
+  default = {
+    Name       = "terraform-testing"
+    Owner      = "Will Hall"
+    Purpose    = "Testing"
+    CostCenter = "0001"
+  }
 }
