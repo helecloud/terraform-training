@@ -17,8 +17,9 @@ variable "project_tags" {
   type = map(string)
   default = {
     Name       = "terraform-testing"
-    Owner      = "Will Hall"
-    Purpose    = "Testing"
+    application      = "Will Hall"
+    role    = "Testing"
+    environment = "uat"
     CostCenter = "0001"
   }
 }

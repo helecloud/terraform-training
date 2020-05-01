@@ -7,3 +7,7 @@
 
 # .tfvars files
 *.tfvars
+
+# tfplan
+**/tfplan.out
+**/tfplan.out.json
