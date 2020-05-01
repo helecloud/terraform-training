@@ -14,10 +14,9 @@ variable "instance_type" {
 }
 
 variable "project_tags" {
-  description = "Project tags to be used to track costs."
   type = map
   default = {
-    Name       = "Instance"
+    Name       = "terraform-testing"
     Owner      = "Will Hall"
     Purpose    = "Testing"
     CostCenter = "0001"
