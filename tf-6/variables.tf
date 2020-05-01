@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "project_tags" {
   description = "Project tags to be used to track costs."
-  type = map
+  type = map(string)
   default = {
     Name       = "Instance"
     Owner      = "Will Hall"

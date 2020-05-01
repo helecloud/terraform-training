@@ -1,5 +1,5 @@
 variable "region" {
-  type    = "string"
+  type    = string
   default = "eu-west-2"
 }
 
@@ -14,7 +14,7 @@ variable "instance_type" {
 }
 
 variable "project_tags" {
-  type = "map"
+  type = map(string)
   default = {
     Name       = "terraform-testing"
     Owner      = "Will Hall"

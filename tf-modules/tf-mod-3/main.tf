@@ -3,6 +3,7 @@ provider "aws" {
   version = "~> 2.0"
 }
 
+# If we have time...
 module "tf-stack" {
   source = "github.com/helecloud/terraform-aws-simplestack"
   project_tags =  {
