@@ -49,8 +49,8 @@ resource "aws_security_group" "ssh" {
 resource "aws_security_group" "http" {
   name        = "public http"
   description = "Security Group Deployment"
-  vpc_id      = "${aws_vpc.default.id}"
-  tags        = "${merge(var.project_tags)}"
+  vpc_id      = aws_vpc.default.id
+  tags        = merge(var.project_tags)
 
   # HTTP access from anywhere
   ingress {
@@ -72,8 +72,8 @@ resource "aws_security_group" "http" {
 resource "aws_security_group" "egress" {
   name        = "egress all"
   description = "Security Group Deployment"
-  vpc_id      = "${aws_vpc.default.id}"
-  tags        = "${merge(var.project_tags)}"
+  vpc_id      = aws_vpc.default.id
+  tags        = merge(var.project_tags)
 
   # outbound internet access
   egress {
@@ -85,18 +85,18 @@ resource "aws_security_group" "egress" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "${var.ami}"
-  instance_type = "${var.instance_type}"
-  subnet_id     = "${aws_subnet.subnet.id}"
+  ami           = var.ami
+  instance_type = var.instance_type
+  subnet_id     = aws_subnet.subnet.id
   vpc_security_group_ids = [
-    "${aws_security_group.ssh.id}",
-    "${aws_security_group.http.id}",
-    "${aws_security_group.egress.id}"
+    aws_security_group.ssh.id,
+    aws_security_group.http.id,
+    aws_security_group.egress.id
   ]
-  tags = "${merge(var.project_tags)}"
+  tags = merge(var.project_tags)
 }
 
 resource "aws_eip" "ip_address" {
-  instance = "${aws_instance.web.id}"
+  instance = aws_instance.web.id
   vpc      = true
 }

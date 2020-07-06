@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "s3_bucket_policy" {
   statement {
     effect = "Allow"
     principals {
-      identifiers = ["${local.aws_account_id}"]
+      identifiers = [local.aws_account_id]
       type        = "AWS"
     }
     actions   = ["*"]
@@ -42,15 +42,15 @@ resource "aws_s3_bucket" "test_bucket" {
   }
 
   # tags {
-  #   Name        = "${var.tag_bucket_name}"
-  #   Environment = "${var.tag_bucket_environment}"
+  #   Name        = var.tag_bucket_name
+  #   Environment = var.tag_bucket_environment
   # }
 }
 
 resource "aws_s3_bucket_policy" "bucket_access_policy" {
-  count  = "${var.with_policy ? 1 : 0}"
-  bucket = "${aws_s3_bucket.test_bucket.id}"
-  policy = "${data.aws_iam_policy_document.s3_bucket_policy.json}"
+  count  = var.with_policy ? 1 : 0
+  bucket = aws_s3_bucket.test_bucket.id
+  policy = data.aws_iam_policy_document.s3_bucket_policy.json
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -61,5 +61,5 @@ resource "aws_s3_bucket_policy" "bucket_access_policy" {
 data "aws_caller_identity" "current" {}
 
 locals {
-  aws_account_id = "${data.aws_caller_identity.current.account_id}"
+  aws_account_id = data.aws_caller_identity.current.account_id
 }
