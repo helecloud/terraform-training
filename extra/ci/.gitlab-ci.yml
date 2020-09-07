@@ -1,0 +1,74 @@
+---
+image:
+  name: hashicorp/terraform
+  entrypoint:
+    - /usr/bin/env
+
+cache:
+  paths:
+    - terraform/.terraform
+
+stages:
+  - lint
+  - plan
+  - apply
+  - destroy
+
+yamllint:
+  image: sdesbure/yamllint
+  stage: lint
+  script:
+    - yamllint .
+
+fmt-check:
+  stage: lint
+  script:
+    - terraform fmt -recursive -check
+
+tfsec:
+  image: wesleydeanflexion/tfsec:latest
+  stage: lint
+  script:
+    - tfsec .
+
+tflint:
+  stage: lint
+  image:
+    name: wata727/tflint
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+    - tflint .
+
+validate:
+  stage: test
+  script:
+    - echo $tfc_credentials > /root/.terraformrc
+    - terraform init
+    - terraform version
+    - terraform validate
+
+plan:
+  stage: plan
+  script:
+    - echo $tfc_credentials > /root/.terraformrc
+    - terraform init
+    - terraform plan -out out.tfplan
+  artifacts:
+    expire_in: 8 weeks
+    paths:
+      - terraform/out.tfplan
+
+apply:
+  stage: apply
+  script:
+    - echo $tfc_credentials > /root/.terraformrc
+    - terraform init
+    - terraform apply -input=false out.tfplan
+
+destroy:
+  stage: destroy
+  script:
+    - echo $tfc_credentials > /root/.terraformrc
+    - terraform init
+    - terraform destroy -auto-approve
+  when: manual

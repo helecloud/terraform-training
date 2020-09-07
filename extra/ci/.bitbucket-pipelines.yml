@@ -1,0 +1,31 @@
+---
+# Terraform standardisation CI
+# We need to understand which version we are locking to.
+image: hashicorp/terraform
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Terraform Formatting
+            script:
+              - terraform fmt -check -recursive
+        - step:
+            name: TFLint
+            image: wata727/tflint
+            script:
+              - tflint .
+        - step:
+            name: TFSec
+            image: wesleydeanflexion/tfsec:latest
+            script:
+              - tfsec .
+        - step:
+            image: sdesbure/yamllint
+            name: Yamllint
+            script:
+              - yamllint .
+        - step:
+            name: Terraform Validate
+            script:
+              - terraform validate
