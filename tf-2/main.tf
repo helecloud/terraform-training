@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_instance" "web" {
   ami           = var.ami
-  instance_type = "t2.small"
+  instance_type = "t2.micro"
   tags = {
     Name = var.name
   }
