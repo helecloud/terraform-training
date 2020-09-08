@@ -20,6 +20,6 @@ variable "project_tags" {
     Name       = "Instance"
     Owner      = "Will Hall"
     Purpose    = "Testing"
-    CostCenter = "0001"
+    CostCenter = "0002"
   }
 }
