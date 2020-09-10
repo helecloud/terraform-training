@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 module "tf-stack" {
-  source = "github.com/helecloud/terraform-aws-simplestack"
+  source = "github.com:helecloud/terraform-aws-simplestack.git"
   project_tags =  {
     Name       = "terraform-stackdemo"
     Owner      = "Will Hall"
